@@ -1,0 +1,2 @@
+Deadlock is a situation in which no one can proceed because every member is waiting for the others.
+we can use Thread.join to avoid Deadlock
