@@ -20,6 +20,6 @@ public interface AdminInterface {
 	
 	public void generateBill(BillBean bill) throws InputMisMatch;
 	
-	public List<BillBean> paidAndPandigBills(int status) throws EmptySet;
+	public List<BillBean> paidAndPendingBills(int status) throws EmptySet;
 	
 }

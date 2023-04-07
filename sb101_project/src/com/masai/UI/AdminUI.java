@@ -64,7 +64,7 @@ public class AdminUI {
 	}
 	
 	public static void displayBillOfConsumerByID(Scanner sc) {
-		System.out.println("Enter the Consumer ID of consumer you want to get bill details");
+		System.out.println("Enter Consumer ID");
 		int consumerID = sc.nextInt();
 		
 		AdminInterface ai = new AdminDAO();
@@ -101,14 +101,14 @@ public class AdminUI {
 	}
 	
 	public static void deleteConsumer(Scanner sc) {
-		System.out.println("Enter the Consumer ID you want to remove from consumer list");
+		System.out.println("Enter Consumer ID ");
 		int cid = sc.nextInt();
 		
 		AdminInterface ai = new AdminDAO();
 		
 		try {
 			ai.deleteConsumer(cid);
-			System.out.println("Consumer record is now in active");
+			System.out.println("Consumer record is now active");
 		} catch (NoConsumerFound e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
@@ -119,9 +119,9 @@ public class AdminUI {
 	public static void generateBill(Scanner sc) {
 		System.out.println("Enter Consumer-ID");
 		int cId = sc.nextInt();
-		System.out.println("Enter Unit Consumed");
+		System.out.println("Enter Units Consumed");
 		int unit = sc.nextInt();
-		System.out.println("Enter the Date of Bill in From(YYYY-MM-DD) To(YYYY-MM-DD)");
+		System.out.println("Enter the Date of Bill in form(YYYY-MM-DD) To(YYYY-MM-DD)");
 		LocalDate fDate = LocalDate.parse(sc.next());
 		LocalDate toDate = LocalDate.parse(sc.next());
 		
@@ -143,7 +143,7 @@ public class AdminUI {
 		AdminInterface ai = new AdminDAO();
 		
 		try {
-			List<BillBean> list1 =  ai.paidAndPandigBills(0);
+			List<BillBean> list1 =  ai.paidAndPendingBills(0);
 			System.out.println("----------Pending Bills----------");
 			for(int i=0;i<list1.size();i++) {
 				if(i%2 == 0) System.out.println(list1.get(i).toString());
@@ -151,7 +151,7 @@ public class AdminUI {
 				else System.out.println(list1.get(i).toString());
 			}
 			
-			List<BillBean> list2 =  ai.paidAndPandigBills(1);
+			List<BillBean> list2 =  ai.paidAndPendingBills(1);
 			
 			System.out.println();
 			System.out.println("----------Paid Bills----------");
@@ -170,7 +170,7 @@ public class AdminUI {
 	}
 	
 	public static void adminFunctions(Scanner sc) {
-		System.out.println("Go ahead you are admin now");
+		System.out.println("Hello Admin");
 		int choice = 0;
 		
 		do {

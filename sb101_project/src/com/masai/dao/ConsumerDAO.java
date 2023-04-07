@@ -43,7 +43,7 @@ public class ConsumerDAO implements ConsumerInterface{
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new InputMisMatch("Unable to signup because "+e.getMessage());
+			throw new InputMisMatch("Unable to signup"+e.getMessage());
 		}
 		
 	}
@@ -79,7 +79,7 @@ public class ConsumerDAO implements ConsumerInterface{
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new WrongCredentials("Log-In error because of"+e.getMessage());
+			throw new WrongCredentials("Log-In error"+e.getMessage());
 		}
 		return null;
 	}
@@ -132,7 +132,7 @@ public class ConsumerDAO implements ConsumerInterface{
 			ResultSet rs = pst.executeQuery();
 			
 			double amt = 0;
-			if(DButils.checkIsEmptyOrNot(rs)) throw new NoBillFound("Incorrect Bill Number");
+			if(DButils.checkIsEmptyOrNot(rs)) throw new NoBillFound("Incorrect Bill NO");
 			else {
 				while(rs.next()) {
 					amt = rs.getDouble("amount");
@@ -142,7 +142,7 @@ public class ConsumerDAO implements ConsumerInterface{
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new NoBillFound("Incorrect Bill Number");
+			throw new NoBillFound("Incorrect Bill NO");
 		}
 	}
 
@@ -164,7 +164,7 @@ public class ConsumerDAO implements ConsumerInterface{
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new NoBillFound("Incorrect Bill Number");
+			throw new NoBillFound("Incorrect Bill NO");
 		}
 		
 	}
@@ -210,7 +210,7 @@ public class ConsumerDAO implements ConsumerInterface{
 			
 			List<TransactionBean> list = new ArrayList<>();
 			
-			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Transections Still");
+			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Transections remaining");
 			else {
 				while(rs.next()) {
 					list.add(new TransactionBean(rs.getInt("transaction_id"), rs.getDouble("amount"), rs.getDate("payment_date").toLocalDate()));

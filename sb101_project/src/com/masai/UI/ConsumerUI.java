@@ -56,7 +56,7 @@ public static void consumerMain(Scanner sc) {
 	}
 	
 	public static void signUpConsumer(Scanner sc) {
-		System.out.println("For creating new customer");
+		System.out.println("Create new customer");
 		System.out.println();
 		System.out.println("Enter First Name");
 		String fname = sc.next();
@@ -70,20 +70,20 @@ public static void consumerMain(Scanner sc) {
 		String address = sc.next();
 		System.out.println("Enter Mobile-Number");
 		String mobNo = sc.next();
-		System.out.println("Enter your email");
+		System.out.println("Enter Email");
 		String email = sc.next();
 		
 		ConsumerInterface ci = new ConsumerDAO();
 		try {
 			ci.signUpConsumer(new ConsumerBean(fname, lnameString, userName, password, address, mobNo, email));
-			System.out.println("Welcome now you are a consumer of Electricity Bill Payment System");
+			System.out.println("Welcome!");
 		} catch (InputMisMatch e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());		}
 	}
 	
 	public static void logInConsumer(Scanner sc) {
-		System.out.println("Enter User-Name");
+		System.out.println("Enter User Name");
 		String userName = sc.next();
 		
 		System.out.println("Enter password");
@@ -97,7 +97,7 @@ public static void consumerMain(Scanner sc) {
 			
 			if(consumer.isValid()) {
 				System.out.println("Hey "+consumer.getName()+" Welcome\n"
-						+ "Please let me know how can I help you\n"
+						+ "How can I help you?\n"
 						+ "Please Enter your choice");
 				consumerFunctionalities(sc,consumer.getConsumer_id());
 				
@@ -116,9 +116,9 @@ public static void consumerMain(Scanner sc) {
 		do {
 			System.out.println("+-------------------------------------+\n"
 			         + "|                                     |\n" 
-			         + "| -> Press 0 For Exit                 |\n" 
-			         + "| -> Press 1 To Pay Bill 			  |\n"
-			         + "| -> Press 2 To View All Transaction  |\n"
+			         + "| -> Press 0 -> Exit                 |\n" 
+			         + "| -> Press 1 -> Pay Bill 			  |\n"
+			         + "| -> Press 2 -> View All Transaction  |\n"
 			         + "|                                     |\n"
 			         + "+-------------------------------------+");
 			System.out.println("Enter Your choice");
@@ -133,7 +133,7 @@ public static void consumerMain(Scanner sc) {
 				break;
 			}
 			case 0: {
-				System.out.println("Consumer LocOut");
+				System.out.println("Consumer LogOut");
 				break;
 			}
 			default:
@@ -165,13 +165,13 @@ public static void consumerMain(Scanner sc) {
 			}
 			System.out.println("Your total pending amount: "+totalAmount);
 			
-			System.out.println("Please enter the bill number for the payment you wish to make at this moment.");
+			System.out.println("Please enter the bill number");
 			int billNo = sc.nextInt();
 			
 			double amount = ci.billAmount(billNo);
 			
 			
-			System.out.println("Please confirm your payment by entering 'y' or decline it by entering 'n' \nYour payment Amount is : "+amount);
+			System.out.println("Please confirm  'y' or decline 'n' \nAmount is : "+amount);
 			
 			String payOrNot = sc.next();
 			
@@ -179,12 +179,12 @@ public static void consumerMain(Scanner sc) {
 				ci.updateStatus(billNo);
 				System.out.println("Payment Successful");
 				totalAmount = (totalAmount-amount);
-				System.out.println("Now your total pending amount: "+totalAmount);
+				System.out.println("total pending amount: "+totalAmount);
 				
 				ci.updateTransection(cid, amount);
 			}
 			else {
-				System.out.println("Our payment has been declined. Thank you for considering our services.");
+				System.out.println("payment declined.");
 			}
 		} catch (EmptySet | NoBillFound | InputMisMatch e) {
 			// TODO Auto-generated catch block

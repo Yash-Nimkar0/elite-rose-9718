@@ -18,7 +18,7 @@ import utils.DButils;
 public class AdminDAO implements AdminInterface{
 	@Override
 	public List<ConsumerBean> displayAllConsumers() throws EmptySet {
-		// TODO Auto-generated method stub
+		
 		Connection con = null;
 		
 		try {
@@ -30,7 +30,7 @@ public class AdminDAO implements AdminInterface{
 			
 			ResultSet rs = pst.executeQuery();
 			
-			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No consumer records founded");
+			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No records found");
 			else {
 				List<ConsumerBean> list = new ArrayList<>();
 				
@@ -43,7 +43,7 @@ public class AdminDAO implements AdminInterface{
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new EmptySet("No consumer records founded");
+			throw new EmptySet("No records found");
 		}
 		finally {
 			try {
@@ -69,7 +69,7 @@ public class AdminDAO implements AdminInterface{
 			
 			ResultSet rs = pst.executeQuery();
 			
-			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Bills allotted to this Consumer");
+			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Bills ");
 			else {
 				List<BillBean> list = new ArrayList<>();
 				
@@ -81,7 +81,7 @@ public class AdminDAO implements AdminInterface{
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new EmptySet("No Bills allotted to this Consumer");
+			throw new EmptySet("No Bills");
 		}
 		
 	}
@@ -100,7 +100,7 @@ public class AdminDAO implements AdminInterface{
 			
 			ResultSet rs = pst.executeQuery();
 			
-			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Bills allotted to this Consumer");
+			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Bills");
 			else {
 				List<BillBean> list = new ArrayList<>();
 				
@@ -112,7 +112,7 @@ public class AdminDAO implements AdminInterface{
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			throw new EmptySet("No Bills allotted to this Consumer"+e.getMessage());
+			throw new EmptySet("No Bills"+e.getMessage());
 		}
 	}
 
@@ -167,7 +167,7 @@ public class AdminDAO implements AdminInterface{
 	}
 
 	@Override
-	public List<BillBean> paidAndPandigBills(int status) throws EmptySet {
+	public List<BillBean> paidAndPendingBills(int status) throws EmptySet {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		
@@ -182,7 +182,7 @@ public class AdminDAO implements AdminInterface{
 			
 			ResultSet rs = pst.executeQuery();
 			
-			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Bills allotted to this Consumer");
+			if(DButils.checkIsEmptyOrNot(rs)) throw new EmptySet("No Consumer");
 			else {
 				List<BillBean> list = new ArrayList<>();
 				
